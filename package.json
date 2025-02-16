@@ -6,7 +6,8 @@
   "scripts": {
     "frontend": "cd frontend && npm start",
     "dev": "cd frontend && npm start && cd ..",
-    "backend": "cd frontend && npm start",
+    "venv_init": "python -m venv backend_env && backend_env\\Scripts\\activate && pip install -r requirements.txt",
+    "backend": "backend_env\\Scripts\\activate && python backend\\manage.py runserver",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

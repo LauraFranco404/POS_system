@@ -20,14 +20,21 @@ try:
 except Exception as e:
     print(e)
 
+#json sellers structure: {}
+
 @csrf_exempt
 def addseller(request):
     if request.method == "POST":
+        sellers = db["sellers"]
         try:
             data = json.loads(request.body)
-            db["sellers"].insert_one(data)
-            return JsonResponse({"message": "Seller added"}, status=201) #201 - good status and created something
+            if (sellers.find_one({"documentid": data.get("documentid")}) == None):
+                sellers.insert_one(data)
+                return JsonResponse({"message": "Seller added"}, status=201) #201 - good status and created something
+            else:
+                return JsonResponse({"error": "seller already added"}, status=409)     
         except Exception as e:
+            print(e)
             return JsonResponse({"error": str(e)}, status=500) #500 - server error
     return JsonResponse({"error": "method not allowed"}, status=405) #405 - method not allowed e.g only post type allowed
 
