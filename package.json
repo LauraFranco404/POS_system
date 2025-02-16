@@ -1,0 +1,23 @@
+{
+  "name": "pos_system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "cd frontend && npm start",
+    "dev": "cd frontend && npm start && cd ..",
+    "backend": "cd frontend && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LauraFranco404/POS_system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LauraFranco404/POS_system/issues"
+  },
+  "homepage": "https://github.com/LauraFranco404/POS_system#readme"
+}
