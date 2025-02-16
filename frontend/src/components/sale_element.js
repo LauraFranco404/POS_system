@@ -6,10 +6,10 @@ export default function Saleelement(props){
             /*Shows all products on this sale element*/
             props.sale.products.map((product) => (
                 <div>
-                    <div>id del producto: {product.productid}</div>
-                    <div>nombre del producto: {product.name}</div>
-                    <div>cantidad adquirida: {product.amount}</div>
-                    <div>precio por unidad: {product.unitprice}</div>
+                    <span>id del producto: {product.productid}</span>
+                    <span>nombre del producto: {product.name}</span>
+                    <span>cantidad adquirida: {product.amount}</span>
+                    <span>precio por unidad: {product.unitprice}</span>
                 </div>
             ))
         }
