@@ -13,6 +13,8 @@ uri = os.getenv("DATABASE_URL") #full url is in .env file, it is not uploaded to
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
 db = client["Test-stuff"]
+sellers = db["sellers"]
+
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
@@ -23,30 +25,72 @@ except Exception as e:
 #json sellers structure: {}
 
 @csrf_exempt
-def addseller(request):
+def addSeller(request):
     if request.method == "POST":
-        sellers = db["sellers"]
         try:
             data = json.loads(request.body)
             if (sellers.find_one({"documentid": data.get("documentid")}) == None):
                 sellers.insert_one(data)
-                return JsonResponse({"message": "Seller added"}, status=201) #201 - good status and created something
+                return JsonResponse({"message": "Seller added"}, status=200) #200 - good status
             else:
-                return JsonResponse({"error": "seller already added"}, status=409)     
+                return JsonResponse({"error": "seller already added"}, status=409) #409 - conflict     
         except Exception as e:
             print(e)
             return JsonResponse({"error": str(e)}, status=500) #500 - server error
     return JsonResponse({"error": "method not allowed"}, status=405) #405 - method not allowed e.g only post type allowed
 
+@csrf_exempt
+def deleteSeller(request):
+    if request.method == "DELETE":
+        try:
+            data = json.loads(request.body)
+            if (sellers.find_one({"documentid": data.get("documentid")}) != None):
+                sellers.delete_one({"documentid": data.get("documentid")})
+                return JsonResponse({"message": "Seller deleted"}, status=200) #200 - good status
+            else:
+                return JsonResponse({"error": "seller not found"}, status=404) #404 - not found
+        except Exception as e:
+            print(e)
+            return JsonResponse({"error": str(e)}, status=500) #500 - server error
+    return JsonResponse({"error": "method not allowed"}, status=405) #405 - method not allowed e.g only post type allowed
 
-def deleteseller(request):
-    return HttpResponse("Removed seller to bd!")
+@csrf_exempt
+def updateSeller(request):
+    if request.method == "PUT":
+        try:
+            data = json.loads(request.body)
+            if (sellers.find_one({"documentid": data.get("documentid")}) != None):
+                sellers.update_one({"documentid": data.get("documentid")}, {"$set": data})
+                return JsonResponse({"message": "Seller updated"}, status=200) #200 - good status
+            else:
+                return JsonResponse({"error": "seller doesn't exists"}, status=404) #404 - not found     
+        except Exception as e:
+            print(e)
+            return JsonResponse({"error": str(e)}, status=500) #500 - server error
+    return JsonResponse({"error": "method not allowed"}, status=405) #405 - method not allowed e.g only post type allowed
 
-def updateseller(request):
-    return HttpResponse("Upadted seller to bd!")
+def getAllSellers(request):
+    if request.method == "GET":
+        try:
+            sellersdb = list(sellers.find({}, {"_id": 0, "password": 0}))  # Excluir el campo _id
+            return JsonResponse({"sellers": sellersdb}, status=200, safe=False)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
 
-def getsellers(request):
-    return HttpResponse("Some sollers!")
+    return JsonResponse({"error": "method not allowed"}, status=405)
 
-def getseller(request):
-    return HttpResponse("Single seller!")
+def getSellerById(request):
+    if request.method == "GET":
+        documentid = int(request.GET.get("documentid")) # get val form param
+
+        if not documentid:
+            return JsonResponse({"error": "No documentid provided"}, status=400) 
+        print("docid: ", documentid)
+        seller = sellers.find_one({"documentid": documentid}, {"_id": 0, "password":0})
+
+        if seller:
+            return JsonResponse({"seller": seller}, status=200) #200 - good status
+        else:
+            return JsonResponse({"error": "Seller not found"}, status=404) #404 - not found     
+
+    return JsonResponse({"error": "Método no permitido"}, status=405) #405 - method not allowed e.g only post type allowed
