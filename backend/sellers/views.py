@@ -26,6 +26,7 @@ except Exception as e:
 
 @csrf_exempt
 def addSeller(request):
+    print("method: ", request.method)
     if request.method == "POST":
         try:
             data = json.loads(request.body)

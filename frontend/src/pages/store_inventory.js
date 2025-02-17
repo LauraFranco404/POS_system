@@ -14,7 +14,7 @@ export default function Storeinventory(){
         <div>
             {
                 elements.map((product) => (
-                    <Inventoryelement product = {product}></Inventoryelement>
+                    <Inventoryelement key = {product.productid} product = {product}></Inventoryelement>
                 ))
             }
         </div>

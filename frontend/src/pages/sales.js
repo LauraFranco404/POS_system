@@ -16,7 +16,7 @@ export default function Sales(){
         <div>
             {
                 sales.map((sale) => (
-                    <Saleelement sale = {sale}></Saleelement>
+                    <Saleelement key = {sale.id} sale = {sale}></Saleelement>
                 ))
             }
         </div>

@@ -5,7 +5,7 @@ export default function Saleelement(props){
         {
             /*Shows all products on this sale element*/
             props.sale.products.map((product) => (
-                <div>
+                <div key={product.productid}>
                     <span>id del producto: {product.productid}</span>
                     <span>nombre del producto: {product.name}</span>
                     <span>cantidad adquirida: {product.amount}</span>
