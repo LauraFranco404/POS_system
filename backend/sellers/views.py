@@ -1,12 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-import json
-from django.views.decorators.csrf import csrf_exempt
-import os
+from django.http import JsonResponse
+from django.shortcuts import render
 from dotenv import load_dotenv
+import bcrypt
+import json
+import os
 
 load_dotenv()
 uri = os.getenv("DATABASE_URL") #full url is in .env file, it is not uploaded to the repository.
@@ -22,7 +22,7 @@ try:
 except Exception as e:
     print(e)
 
-#json sellers structure: {}
+#json sellers structure: {"documentid": 1234567891, "name": "nombre1", "lastname": "apellido1", "datebirth": "10/10/2010", "password":1234}
 
 @csrf_exempt
 def addSeller(request):
@@ -30,6 +30,12 @@ def addSeller(request):
         try:
             data = json.loads(request.body)
             if (sellers.find_one({"documentid": data.get("documentid")}) == None):
+                
+                #encrypt password
+                password = str(data.get("password")).encode("utf-8")  
+                hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())  
+                data["password"] = hashed_password.decode("utf-8")
+
                 sellers.insert_one(data)
                 return JsonResponse({"message": "Seller added"}, status=200) #200 - good status
             else:
