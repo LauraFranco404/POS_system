@@ -1,0 +1,101 @@
+.estiloPage{
+    color: #D29836;
+}
+
+.barraB{
+    gap: 10px;
+    background-color: #0800a2;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0px 0px;
+    margin: 0px;
+    text-align:center;
+    justify-content: left;
+}
+
+.estiloElemento{
+    color:#ffffff !important;
+    text-decoration: none;
+    font-size: 25pt;
+    padding: 0 2rem 0 2rem;
+
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+
+
+}
+.estiloElemento:active{
+    background-color: #549bf1;
+    color: #FFFFFF;
+    font-size: 25pt;
+    height: 60px;
+    padding: 0 2rem 0 2rem;
+    display: flex;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    align-items: center;
+    font-weight: bold;
+
+}
+.estiloSeleccion{
+    background-color: #549bf1;
+    color: #FFFFFF;
+    font-size: 25pt;
+    height: 60px;
+    display: flex;
+    padding: 0 2rem 0 2rem;
+    align-items: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+
+
+}
+
+.estiloLogIn{
+    margin: 10px;
+    padding: 0 2rem 0 2rem;
+    border-radius: 10px;
+    background-color: hsl(243, 100%, 16%);
+    border-color: #0000;
+    color: #FFFFFF;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 20pt;
+    height: 40px;
+    cursor: pointer; /* Cambia el cursor a un puntero al pasar el mouse sobre el botón */
+
+}
+.estiloLogInSeleccion{
+    border-radius: 10px;
+    background-color: #E3B974;
+    border-color: #E3B974;
+    box-shadow: none;
+    border: none;
+    color: #FFFFFF;
+    height: 80px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: xx-large;
+
+}
+
+.estiloLogo{
+    background-color: #5D3810;
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 10px;
+    height: auto;
+}
+.estiloIcono {
+    padding: 20px !important;
+    margin: 0px !important;
+    color: white;  /* Cambia el color si lo necesitas */
+    font-size: 60px; /* Ajusta el tamaño del icono */
+}
+.contenedorLogin {
+    margin-left: auto; /* Empuja el botón a la derecha */
+    display: flex;
+}

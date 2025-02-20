@@ -1,0 +1,23 @@
+.container{
+    border: 2px;
+    width: 200px;
+    padding: 0px 0px 20px 0px;
+    margin: 0px 0px;
+    border-radius: 5px;
+    overflow-x: hidden;
+
+}
+
+.title{
+    color:white;
+    display: flex;
+    align-items: center;
+}
+
+.estadito{
+    color: white;
+}
+
+.link{
+    color: #3DFF29;
+}

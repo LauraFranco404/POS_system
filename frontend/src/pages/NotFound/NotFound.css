@@ -1,0 +1,41 @@
+.notFound {
+    text-align: center;
+    margin: 100px auto;
+
+}
+
+.error{
+    gap: 20px;
+    justify-content: center;
+    display: flex;
+
+}
+
+.imageNotFound{
+    width: 230px;
+    height: 230px;
+    text-align: center;
+    align-items: center;
+    margin: 0;
+
+}
+
+.numeros{
+    text-align: center;
+    font-size: 200px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+
+}
+
+.textoError{
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.linkhome{
+    font-size: 20px;
+    color:#5D3810;
+    text-decoration: underline;
+}

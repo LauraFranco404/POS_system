@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import Saleelement from "../components/sale_element"
+import Saleelement from "../../components/sale_element"
 
 export default function Sales(){
     var sales = [ 
