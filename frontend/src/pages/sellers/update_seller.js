@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Sellerspanel from "../../components/sellers_panel";
 import { useNavigate } from "react-router-dom";
+import Barra from "../../components/Barra/Barra";
+
 
 export default function Updateseller() {
     const [documentid, setDocumentid] = useState("");
@@ -34,6 +36,7 @@ export default function Updateseller() {
 
     return (
         <div>
+            <Barra/>
             <Link to="/sellers/">volver</Link>
             <div>
                 <span>Actualizar información de vendedor</span>

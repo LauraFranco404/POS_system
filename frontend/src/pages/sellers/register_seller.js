@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Barra from "../../components/Barra/Barra";
 
 export default function Registerseller() {
     const [formData, setFormData] = useState({ documentid: "", name: "", lastname: "", datebirth: "", password: "", repeatPassword: "" });
@@ -25,6 +26,7 @@ export default function Registerseller() {
 
     return (
         <div>
+            <Barra/>
             <Link to="/sellers/">volver</Link>
             <div><span>Registrar vendedor</span></div>
             <div>

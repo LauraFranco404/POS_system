@@ -1,24 +1,25 @@
 import "./inventory.css"
 import Barra from "../../components/Barra/Barra"
+import Inventoryelement from "../../components/inventory_element"
 //import { Link } from "react-router-dom"
-import TableComponent from "../../components/Modal/Inventory_element/inventory_element"
 
 export default function Storeinventory(){
 
-    //var elements = [{productid: 1, name: "queso", amount: 10, unitprice: 1}, {productid: 2, name: "chocolate", amount: 20, unitprice: 4}]
+    var elements = [{productid: 1, name: "queso", amount: 10, unitprice: 1}, {productid: 2, name: "chocolate", amount: 20, unitprice: 4}]
 
     return (
     <div>
         <Barra/>
-        <div className="texto">
-            <h1>
-                Manejo de inventario
-            </h1>
+        <div>
+            <span>Manejo de inventario</span>
         </div>
         <div>
-            <TableComponent />
+            {
+                elements.map((product) => (
+                    <Inventoryelement key = {product.productid} product = {product}></Inventoryelement>
+                ))
+            }
         </div>
-        
     </div>
     )
 }

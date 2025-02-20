@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Sellerspanel from "../../components/sellers_panel";
+import Barra from "../../components/Barra/Barra";
 
 export default function Deleteseller() {
     const [documentid, setDocumentid] = useState("");
@@ -22,6 +23,7 @@ export default function Deleteseller() {
 
     return (
         <div>
+            <Barra/>            
             <Link to="/sellers/">volver</Link>
             <div>
                 <span>Deleteseller</span>

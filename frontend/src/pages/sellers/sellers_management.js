@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
+import Barra from "../../components/Barra/Barra";
 
 export default function Sellersmanagement(){
     return (
         <div>
-            <Link to = "/">volver</Link>
+            <Barra/>
             <div>
                 <span>Sellers management</span>
             </div>
