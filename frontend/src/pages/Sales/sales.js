@@ -11,7 +11,6 @@ export default function Sales(){
     return (
     <div>
         <Barra/>
-        <Link to = "/">volver</Link>
         <div>
             <span>Ventas</span>
         </div>

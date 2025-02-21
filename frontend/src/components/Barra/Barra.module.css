@@ -3,24 +3,22 @@
 }
 
 .barraB{
-    gap: 10px;
-    background-color: #05a764;
     height: 60px;
     display: flex;
     align-items: center;
+    border-bottom: 1px var(--gray-1) solid; /*Colores constantes definidos en index.css*/
     padding: 0px 15px 0 0px;
     margin: 0px;
     text-align:center;
     justify-content: left;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 15pt;
     font-weight: 100;
 }
 
 .estiloElemento{
-    color:#ffffff !important;
     text-decoration: none;
-    height: 96%;
+    height: 100%;
+    color: var(--text-color-1); /*Colores constantes definidos en index.css*/
 
     display: flex;
     align-items: center;
@@ -28,18 +26,17 @@
     padding: 0 2rem 0 2rem;
 }
 .estiloElemento:hover{
-    background-color:#059c5d;
+    background-color: var(--primary-color-highlight-1); /*Colores constantes definidos en index.css*/
 }
 .estiloSeleccion{
-    border-bottom: 3px solid #08ca79;
+    border-bottom: 3px solid var(--primary-color-1); /*Colores constantes definidos en index.css*/
 }
 
 .estiloLogIn{
     margin: 0 0 0 auto;
     padding: 0 1rem 0 1rem;
     border-radius: 10px;
-    background-color: #0e7449;
-    border-color: #0000;
+    background-color: var(--primary-color-3); /*Colores constantes definidos en index.css*/
     text-decoration: none;
     color: #ffffff;
     font-size: 15pt;
@@ -50,38 +47,18 @@
     cursor: pointer; /* Cambia el cursor a un puntero al pasar el mouse sobre el botón */
 }
 
-
-.estiloLogInSeleccion{
-    border-radius: 10px;
-    background-color: #E3B974;
-    border-color: #E3B974;
-    box-shadow: none;
-    border: none;
-    color: #FFFFFF;
-    height: 80px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: bold;
-    font-size: xx-large;
-
+.estiloLogIn:hover{
+    background-color: var(--primary-color-4);
 }
 
-.estiloLogo{
-    background-color: #5D3810;
-    padding: 0px !important;
-    margin: 0px !important;
-    width: 10px;
-    height: auto;
-}
+
 .estiloIcono {
     padding: 20px !important;
     margin: 0px !important;
-    color: white;  /* Cambia el color si lo necesitas */
-    font-size: 30px; /* Ajusta el tamaño del icono */
+    color: var(--primary-color-3);
+    font-size: 30px; 
 }
 .contenedorLogin {
-    margin-left: auto; /* Empuja el botón a la derecha */
+    margin-left: auto; 
     display: flex;
 }

@@ -1,3 +1,16 @@
+
+:root {
+  --primary-color-highlight-1: #c3fae3;
+  --primary-color-1: #2ecc71;
+  --primary-color-2: #27b462;
+  --primary-color-3: #21a358;
+  --primary-color-4: #177c41;
+  --text-color-1: #000000;
+  --background-color-1: #ffffff;
+  --gray-1: #c2c2c2;
+}
+
+
 body {
   margin: 0;
 }

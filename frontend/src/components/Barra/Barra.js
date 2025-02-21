@@ -41,7 +41,7 @@ function Barra({page, getData}){
                   Ventas
           </Link>
 
-          <Link to={"/login"} className={`${styles.estiloLogIn} ${selectedLink === "/login" ? styles.estiloLogInSeleccion: ""}`}>
+          <Link to={"/login"} className={`${styles.estiloLogIn}`}>
                   Ingrese aquí
           </Link>
         </div>
