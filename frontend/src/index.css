@@ -7,10 +7,13 @@
   --primary-color-4: #177c41;
   --text-color-1: #000000;
   --background-color-1: #ffffff;
+  --background-color-2: #eef3ef;
+  --background-color-3: #ebebeb;
   --gray-1: #c2c2c2;
 }
 
 
 body {
+  background-color: var(--background-color-2);
   margin: 0;
 }

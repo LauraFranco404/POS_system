@@ -1,5 +1,5 @@
 import "./inventory.css"
-import Barra from "../../components/Barra/Barra"
+import Navbar from "../../components/Navbar/Navbar"
 import Inventoryelement from "../../components/inventory_element"
 //import { Link } from "react-router-dom"
 
@@ -9,7 +9,7 @@ export default function Storeinventory(){
 
     return (
     <div>
-        <Barra/>
+        <Navbar/>
         <div>
             <span>Manejo de inventario</span>
         </div>

@@ -1,18 +1,24 @@
 import { Link } from "react-router-dom"
-import Barra from "../../components/Barra/Barra";
+import Navbar from "../../components/Navbar/Navbar";
+import './sellers_management.css'
 
 export default function Sellersmanagement(){
     return (
         <div>
-            <Barra/>
-            <div>
-                <span>Sellers management</span>
+            <Navbar/>
+            <div className="sellers-container">
+                <div className="panel-container">
+                    <div className="title-container">
+                        <span>Sellers Management</span>
+                    </div>
+                    <div className="separator-line"></div>
+                    <ul className="panel-elements">
+                        <li><Link to="/sellers/registerseller">Register Seller<span>&gt;</span></Link></li>
+                        <li><Link to="/sellers/deleteseller">Delete Seller<span>&gt;</span></Link></li>
+                        <li><Link to="/sellers/updateseller">Update Seller<span>&gt;</span></Link></li>
+                    </ul>
+                </div>
             </div>
-            <ul>
-                <li><Link to="/sellers/registerseller">Registrar vendedores</Link></li>
-                <li><Link to="/sellers/deleteseller">Borrar vendedores</Link></li>
-                <li><Link to="/sellers/updateseller">Actualizar vendedores</Link></li>
-            </ul>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import "./home.css"
-import Barra from "../../components/Barra/Barra";
+import Navbar from "../../components/Navbar/Navbar";
 import {Link, useLocation} from "react-router-dom";
 
   function Home() {
@@ -7,13 +7,13 @@ import {Link, useLocation} from "react-router-dom";
     var isAdmin = true; //add login as admin or as seller
     return (
       <div>
-        <Barra/>
+        <Navbar/>
         { !isLoggedIn && 
         <div className="container">
           <div className="text-container">
-            <span>¡Bienvenido!</span>
-            <span>Este es el sistema de Punto de Venta de Procesos y Diseño de Software.</span>
-            <span>Haz click <Link to={"/login"} className="login-link">aquí</Link> para acceder al sistema.</span>
+            <span>Welcome!</span>
+            <span>This is the Point Of Sale (POS) created for Processes and Software Design.</span>
+            <span>Click <Link to={"/login"} className="login-link">here</Link> to log in the system.</span>
           </div>
         </div> 
       }

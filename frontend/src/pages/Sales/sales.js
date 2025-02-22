@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import Saleelement from "../../components/sale_element"
-import Barra from "../../components/Barra/Barra";
+import Navbar from "../../components/Navbar/Navbar";
 
 export default function Sales(){
     var sales = [ 
@@ -10,7 +10,7 @@ export default function Sales(){
 
     return (
     <div>
-        <Barra/>
+        <Navbar/>
         <div>
             <span>Ventas</span>
         </div>

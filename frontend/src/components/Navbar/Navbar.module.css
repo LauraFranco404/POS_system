@@ -1,42 +1,40 @@
-.estiloPage{
-    color: #D29836;
-}
 
-.barraB{
+.navbarContainer {
     height: 60px;
     display: flex;
     align-items: center;
-    border-bottom: 1px var(--gray-1) solid; /*Colores constantes definidos en index.css*/
+    border-bottom: 1px var(--gray-1) solid; /* Colores constantes definidos en index.css */
     padding: 0px 15px 0 0px;
     margin: 0px;
-    text-align:center;
+    text-align: center;
     justify-content: left;
     font-size: 15pt;
     font-weight: 100;
+    background-color: var(--background-color-1);
 }
 
-.estiloElemento{
+.navItem {
     text-decoration: none;
     height: 100%;
-    color: var(--text-color-1); /*Colores constantes definidos en index.css*/
-
+    color: var(--text-color-1); /* Colores constantes definidos en index.css */
     display: flex;
     align-items: center;
-
     padding: 0 2rem 0 2rem;
 }
-.estiloElemento:hover{
-    background-color: var(--primary-color-highlight-1); /*Colores constantes definidos en index.css*/
-}
-.estiloSeleccion{
-    border-bottom: 3px solid var(--primary-color-1); /*Colores constantes definidos en index.css*/
+
+.navItem:hover {
+    background-color: var(--primary-color-highlight-1); /* Colores constantes definidos en index.css */
 }
 
-.estiloLogIn{
+.selectedItem {
+    border-bottom: 3px solid var(--primary-color-1); /* Colores constantes definidos en index.css */
+}
+
+.loginButton {
     margin: 0 0 0 auto;
     padding: 0 1rem 0 1rem;
     border-radius: 10px;
-    background-color: var(--primary-color-3); /*Colores constantes definidos en index.css*/
+    background-color: var(--primary-color-3); /* Colores constantes definidos en index.css */
     text-decoration: none;
     color: #ffffff;
     font-size: 15pt;
@@ -47,18 +45,18 @@
     cursor: pointer; /* Cambia el cursor a un puntero al pasar el mouse sobre el botón */
 }
 
-.estiloLogIn:hover{
+.loginButton:hover {
     background-color: var(--primary-color-4);
 }
 
-
-.estiloIcono {
+.iconStyle {
     padding: 20px !important;
     margin: 0px !important;
     color: var(--primary-color-3);
-    font-size: 30px; 
+    font-size: 30px;
 }
-.contenedorLogin {
-    margin-left: auto; 
+
+.loginContainer {
+    margin-left: auto;
     display: flex;
 }

@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Barra from "../../components/Barra/Barra";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import Navbar from "../../components/Navbar/Navbar";
+import './sellers_management.css';
+import './sellers_form.css';
 
 export default function Registerseller() {
     const [formData, setFormData] = useState({ documentid: "", name: "", lastname: "", datebirth: "", password: "", repeatPassword: "" });
@@ -26,20 +30,29 @@ export default function Registerseller() {
 
     return (
         <div>
-            <Barra/>
-            <Link to="/sellers/">volver</Link>
-            <div><span>Registrar vendedor</span></div>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <input name="name" placeholder="Nombres del vendedor" value={formData.name} onChange={handleChange} />
-                    <input name="lastname" placeholder="Apellidos del vendedor" value={formData.lastname} onChange={handleChange} />
-                    <input name="documentid" placeholder="Número de cédula" value={formData.documentid} onChange={handleChange} />
-                    <input name="datebirth" placeholder="Fecha de nacimiento DD/MM/YYYY" value={formData.datebirth} onChange={handleChange} />
-                    <input name="password" type="password" placeholder="Contraseña" value={formData.password} onChange={handleChange} />
-                    <input name="repeatPassword" type="password" placeholder="Repetir contraseña" value={formData.repeatPassword} onChange={handleChange} />
-                    <button type="submit">Registrar vendedor</button>
-                </form>
+            <Navbar/>
+            <div className="sellers-container">
+                <div className="panel-container">
+                    <Link to="/sellers/" className="button-goback">
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                    </Link>
+                    <div className="title-container">
+                        <span>Register Seller</span>
+                    </div>
+                    <div className="separator-line"></div>
+                    <form autoComplete="off" onSubmit={handleSubmit} className="panel-elements sellers-form-container">
+                        <input name="name" placeholder="Seller names" value={formData.name} onChange={handleChange} />
+                        <input name="lastname" placeholder="Seller last names" value={formData.lastname} onChange={handleChange} />
+                        <input name="documentid" placeholder="Document ID number" value={formData.documentid} onChange={handleChange} />
+                        <input name="datebirth" placeholder="Birth date DD/MM/YYYY" value={formData.datebirth} onChange={handleChange} />
+                        <input name="password" type="password" placeholder="Password" value={formData.password} onChange={handleChange} />
+                        <input name="repeatPassword" type="password" placeholder="Repeat password" value={formData.repeatPassword} onChange={handleChange} />
+                        <button type="submit">Register Seller</button>
+                    </form>
+                </div>
+               
             </div>
+            
         </div>
     );
 }

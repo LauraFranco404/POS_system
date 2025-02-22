@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Sellerspanel from "../../components/sellers_panel";
-import Barra from "../../components/Barra/Barra";
+import Sellerspanel from "../../components/SellersPanel/sellers_panel";
+import Navbar from "../../components/Navbar/Navbar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import './sellers_management.css';
+import './sellers_form.css';
 
 export default function Deleteseller() {
     const [documentid, setDocumentid] = useState("");
@@ -23,19 +27,22 @@ export default function Deleteseller() {
 
     return (
         <div>
-            <Barra/>            
-            <Link to="/sellers/">volver</Link>
-            <div>
-                <span>Deleteseller</span>
-            </div>
-            <div>
-                <Sellerspanel></Sellerspanel>
-                <div>
-                    <form onSubmit={handleSubmit}>
-                        <input placeholder="Numero de cedula" value={documentid} onChange={handleChange} />
-                        <button type="submit">Borrar vendedor</button>
+            <Navbar/>
+            <div className="sellers-container">
+                <div className="panel-container">
+                    <Link to="/sellers/" className="button-goback">
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                    </Link>
+                    <div className="title-container">
+                        <span>Delete Seller</span>
+                    </div>
+                    <div className="separator-line"></div>
+                    <form autoComplete="off" onSubmit={handleSubmit} className="panel-elements sellers-form-container">
+                        <input placeholder="Document ID number" value={documentid} onChange={handleChange} />
+                        <button type="submit">Delete Seller</button>
                     </form>
-                </div>
+                </div>    
+                <Sellerspanel></Sellerspanel>
             </div>
         </div>
     );

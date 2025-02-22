@@ -1,0 +1,26 @@
+.sellers-form-container{
+
+}
+
+.sellers-form-container input{
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: var(--background-color-3);
+}
+
+.sellers-form-container input:focus{
+    outline: 1px var(--primary-color-3) solid;
+}
+
+.sellers-form-container button{
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: var(--primary-color-1);
+}
+
+.sellers-form-container button:hover{
+    background-color: var(--primary-color-2);
+}
+
