@@ -40,11 +40,11 @@ def addSeller(request):
                 sellers.insert_one(data)
                 return JsonResponse({"message": "Seller added"}, status=200) #200 - good status
             else:
-                return JsonResponse({"error": "seller already added"}, status=409) #409 - conflict     
+                return JsonResponse({"error": "Seller Document ID has already been added"}, status=409) #409 - conflict     
         except Exception as e:
             print(e)
             return JsonResponse({"error": str(e)}, status=500) #500 - server error
-    return JsonResponse({"error": "method not allowed"}, status=405) #405 - method not allowed e.g only post type allowed
+    return JsonResponse({"error": "Method not allowed"}, status=405) #405 - method not allowed e.g only post type allowed
 
 @csrf_exempt
 def deleteSeller(request):
@@ -55,11 +55,11 @@ def deleteSeller(request):
                 sellers.delete_one({"documentid": data.get("documentid")})
                 return JsonResponse({"message": "Seller deleted"}, status=200) #200 - good status
             else:
-                return JsonResponse({"error": "seller not found"}, status=404) #404 - not found
+                return JsonResponse({"error": "Seller Document ID was not found"}, status=404) #404 - not found
         except Exception as e:
             print(e)
             return JsonResponse({"error": str(e)}, status=500) #500 - server error
-    return JsonResponse({"error": "method not allowed"}, status=405) #405 - method not allowed e.g only post type allowed
+    return JsonResponse({"error": "Method not allowed"}, status=405) #405 - method not allowed e.g only post type allowed
 
 @csrf_exempt
 def updateSeller(request):
@@ -70,11 +70,11 @@ def updateSeller(request):
                 sellers.update_one({"documentid": data.get("documentid")}, {"$set": data})
                 return JsonResponse({"message": "Seller updated"}, status=200) #200 - good status
             else:
-                return JsonResponse({"error": "seller doesn't exists"}, status=404) #404 - not found     
+                return JsonResponse({"error": "Seller Document ID was not found"}, status=404) #404 - not found     
         except Exception as e:
             print(e)
             return JsonResponse({"error": str(e)}, status=500) #500 - server error
-    return JsonResponse({"error": "method not allowed"}, status=405) #405 - method not allowed e.g only post type allowed
+    return JsonResponse({"error": "Method not allowed"}, status=405) #405 - method not allowed e.g only post type allowed
 
 def getAllSellers(request):
     if request.method == "GET":
@@ -84,20 +84,20 @@ def getAllSellers(request):
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
 
-    return JsonResponse({"error": "method not allowed"}, status=405)
+    return JsonResponse({"error": "Method not allowed"}, status=405)
 
 def getSellerById(request):
     if request.method == "GET":
         documentid = int(request.GET.get("documentid")) # get val form param
 
         if not documentid:
-            return JsonResponse({"error": "No documentid provided"}, status=400) 
+            return JsonResponse({"error": "No Document ID provided"}, status=400) 
         print("docid: ", documentid)
         seller = sellers.find_one({"documentid": documentid}, {"_id": 0, "password":0})
 
         if seller:
             return JsonResponse({"seller": seller}, status=200) #200 - good status
         else:
-            return JsonResponse({"error": "Seller not found"}, status=404) #404 - not found     
+            return JsonResponse({"error": "Seller Document ID was not found"}, status=404) #404 - not found     
 
-    return JsonResponse({"error": "Método no permitido"}, status=405) #405 - method not allowed e.g only post type allowed
+    return JsonResponse({"error": "Method not allowed"}, status=405) #405 - method not allowed e.g only post type allowed

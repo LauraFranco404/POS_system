@@ -73,7 +73,7 @@
     background-color: var(--primary-color-highlight-1);
 }
 
-.panel-elements span{
+.panel-elements li span{
     color: var(--gray-1);
     font-weight: 900;
 }

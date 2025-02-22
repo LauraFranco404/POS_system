@@ -3,39 +3,98 @@ import { Link } from "react-router-dom";
 import Sellerspanel from "../../components/SellersPanel/sellers_panel";
 import Navbar from "../../components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import './sellers_management.css';
 import './sellers_form.css';
 
 export default function Updateseller() {
     const [documentid, setDocumentid] = useState("");
     const [seller, setSeller] = useState(null);
-    const [formData, setFormData] = useState({ name: "", lastname: "", datebirth: "", password: "" });
+    const [formData, setFormData] = useState({ name: "", lastname: "", datebirth: "", password: "", repeatPassword: "" });
+    const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [updating, setUpdating] = useState(false);
 
-    const handleSearch = (e) => {
+    const validateForm = () => {
+        let newErrors = {};
+        const dateRegex = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+        
+        if (!documentid.trim()) newErrors.documentid = "Document ID is required";
+        if (isNaN(documentid)) newErrors.documentid = "Document ID must be a number";
+        if (!formData.name.trim()) newErrors.name = "Name is required";
+        if (!formData.lastname.trim()) newErrors.lastname = "Last name is required";
+        if (!formData.datebirth.trim()) newErrors.datebirth = "Birth date is required";
+        else if (!dateRegex.test(formData.datebirth)) {
+            newErrors.datebirth = "Birth date must be in format DD/MM/YYYY";
+        } else {
+            const [day, month, year] = formData.datebirth.split("/").map(Number);
+            if (month < 1 || month > 12) newErrors.datebirth = "Month must be between 1 and 12";
+            if (day < 1 || day > 31) newErrors.datebirth = "Day must be between 1 and 31";
+        }
+        if (!formData.password.trim()) newErrors.password = "Password is required";
+        if (formData.password !== formData.repeatPassword) newErrors.repeatPassword = "Passwords do not match";
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSearch = async (e) => {
         e.preventDefault();
-        fetch(`http://127.0.0.1:8000/getsellerbyid/?documentid=${documentid}`)
-        .then(response => response.json())
-        .then(data => {setSeller(data.seller); console.log(data.seller)})
-        .catch(error => console.error("Error:", error));
+        setErrors({});
+        if (!documentid.trim() || isNaN(documentid)) {
+            setErrors({ documentid: "Invalid Document ID" });
+            return;
+        }
+        setLoading(true);
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/getsellerbyid/?documentid=${documentid}`);
+            const data = await response.json();
+            console.log(data);
+            if (!response.ok) throw new Error(data.error || "Failed to fetch seller");
+            setSeller(data.seller);
+        } catch (error) {
+            setErrors({ fetch: error.message });
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
         if (seller) {
-            setFormData({ name: seller.name || "", lastname: seller.lastname || "", datebirth: seller.datebirth || "", password: "" });
+            setFormData({ name: seller.name || "", lastname: seller.lastname || "", datebirth: seller.datebirth || "", password: "", repeatPassword: "" });
         }
     }, [seller]);
 
-    const handleUpdate = (e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault();
-        const updatedData = { documentid: Number(documentid), ...formData };
-        console.log("MY UPDATEDED DATA: ", updatedData);
-        fetch("http://127.0.0.1:8000/updateseller/", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(updatedData) })
-        .then(response => response.json())
-        .then(data => { console.log("Respuesta del servidor:", data); alert("Vendedor actualizado correctamente"); window.location.reload(); })
-        .catch(error => console.error("Error:", error));
+        if (!validateForm()) return;
+        setUpdating(true);
+
+        const dataToSend = {
+            documentid: Number(documentid),
+            name: formData.name,
+            lastname: formData.lastname,
+            datebirth: formData.datebirth,
+            password: formData.password
+        };
+
+        fetch("http://127.0.0.1:8000/updateseller/", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dataToSend)
+        })
+        .then(async response => {
+            const data = await response.json();
+            if (!response.ok) {
+                throw data;
+            }
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error("SV Error:", error);
+            setErrors(prevErrors => ({ ...prevErrors, server:  error.error || "An error occurred while updating the seller." }));
+        })
+        .finally(() => setUpdating(false));
     };
 
     return (
@@ -52,17 +111,25 @@ export default function Updateseller() {
                     <div className="separator-line"></div>
                     <form autoComplete="off" onSubmit={handleSearch} className="panel-elements sellers-form-container">
                         <input placeholder="Document ID number" value={documentid} onChange={(e) => setDocumentid(e.target.value)} />
-                        <button type="submit">Find</button>
+                        {errors.documentid && <span className="error-message">{errors.documentid}</span>}
+                        <button type="submit" disabled={loading}>{loading ? <FontAwesomeIcon icon={faSpinner} spin /> : "Find"}</button>
+                        {errors.fetch && <span className="error-message">{errors.fetch}</span>}
                     </form>
                     {seller && <div className="separator-line"></div>}
                     {seller && (
                     <form autoComplete="off" onSubmit={handleUpdate} className="panel-elements sellers-form-container">
                         <input placeholder="Seller names" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                        {errors.name && <span className="error-message">{errors.name}</span>}
                         <input placeholder="Seller last names" value={formData.lastname} onChange={(e) => setFormData({ ...formData, lastname: e.target.value })} />
+                        {errors.lastname && <span className="error-message">{errors.lastname}</span>}
                         <input placeholder="Birth date DD/MM/YYYY" value={formData.datebirth} onChange={(e) => setFormData({ ...formData, datebirth: e.target.value })} />
-                        <input placeholder="New password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
-                        <input placeholder="Repeat new password" />
-                        <button type="submit">Update Seller</button>
+                        {errors.datebirth && <span className="error-message">{errors.datebirth}</span>}
+                        <input type="password" placeholder="New password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+                        {errors.password && <span className="error-message">{errors.password}</span>}
+                        <input type="password" placeholder="Repeat new password" value={formData.repeatPassword} onChange={(e) => setFormData({ ...formData, repeatPassword: e.target.value })} />
+                        {errors.repeatPassword && <span className="error-message">{errors.repeatPassword}</span>}
+                        <button type="submit" disabled={updating}>{updating ? <FontAwesomeIcon icon={faSpinner} spin /> : "Update Seller"}</button>
+                        {errors.server && <span className="error-message">{errors.server}</span>}
                     </form>
                     )}
                 </div>    
