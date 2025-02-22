@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import styles from './Navbar.module.css';
 import { Link, useLocation } from "react-router-dom";
+
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIgloo } from "@fortawesome/free-solid-svg-icons";
 
@@ -21,7 +23,8 @@ export default function Navbar({ page, getData }) {
             <div className={styles.pageStyle}>
                 <div className={styles.navbarContainer}>
                     <Link to="/">
-                        <FontAwesomeIcon icon={faIgloo} size="1x" className={styles.iconStyle} />
+                        {/*<FontAwesomeIcon icon={faIgloo} size="1x" className={styles.iconStyle} />*/}
+                        <img src="/POS_icon.png" alt="POS Logo" className={styles.iconStyle} />
                     </Link>
                     <Link to={"/"} className={`${styles.navItem} ${selectedLink === "/" ? styles.selectedItem : ""}`}>
                         Home

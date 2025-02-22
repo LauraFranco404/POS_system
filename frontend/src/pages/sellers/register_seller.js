@@ -71,7 +71,7 @@ export default function Registerseller() {
             if (!response.ok) {
                 throw data;
             }
-            //window.location.reload();
+            window.location.reload();
         })
         .catch(error => {
             console.error("SV Error:", error);

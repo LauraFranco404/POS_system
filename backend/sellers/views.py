@@ -22,7 +22,7 @@ try:
 except Exception as e:
     print(e)
 
-#json sellers structure: {"documentid": 1234567891, "name": "nombre1", "lastname": "apellido1", "datebirth": "10/10/2010", "password":1234}
+#json sellers structure: {"documentid": 1234567891, "name": "n1", "lastname": "n2", "datebirth": "10/10/2010", "password":1234}
 
 @csrf_exempt
 def addSeller(request):
@@ -79,7 +79,7 @@ def updateSeller(request):
 def getAllSellers(request):
     if request.method == "GET":
         try:
-            sellersdb = list(sellers.find({}, {"_id": 0, "password": 0}))  # Excluir el campo _id
+            sellersdb = list(sellers.find({}, {"_id": 0, "password": 0}))  # Exclude password and id
             return JsonResponse({"sellers": sellersdb}, status=200, safe=False)
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)

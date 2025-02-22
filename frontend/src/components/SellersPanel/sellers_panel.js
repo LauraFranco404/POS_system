@@ -30,10 +30,10 @@ export default function Sellerspanel(){
                 {
                     sellers.map((seller) => (
                         <div key={seller.documentid} className="seller-info">
-                            <span>Número de cedula: <span>{seller.documentid}</span></span>
-                            <span>Nombres: <span>{seller.name}</span></span>
-                            <span>Apellidos: <span>{seller.lastname}</span></span>
-                            <span>Fecha de nacimiento: <span>{seller.datebirth}</span></span>
+                            <span>Document ID: <span>{seller.documentid}</span></span>
+                            <span>Names: <span>{seller.name}</span></span>
+                            <span>Last Names: <span>{seller.lastname}</span></span>
+                            <span>Birth date: <span>{seller.datebirth}</span></span>
                         </div>
                     ))
                 }

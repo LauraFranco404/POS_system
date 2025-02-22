@@ -1,20 +1,22 @@
 import './App.css';
 import Home from "./pages/Home/home"
-import Registerseller from './pages/sellers/register_seller';
-import Deleteseller from './pages/sellers/delete_seller';
-import Updateseller from './pages/sellers/update_seller';
+import Registerseller from './pages/Sellers/register_seller';
+import Deleteseller from './pages/Sellers/delete_seller';
+import Updateseller from './pages/Sellers/update_seller';
 import Inventory from './pages/Inventory/inventory';
 import {Routes, Route} from "react-router-dom";
-//import Navbar from './components/nav_bar';
-import Sellersmanagement from './pages/sellers/sellers_management';
+import Sellersmanagement from './pages/Sellers/sellers_management';
 import Sales from './pages/Sales/sales';
-import NotFound from './pages/NotFound/NotFound';
+import NotFound from './pages/NotFound/not_found';
+import Login from './pages/Login/login';
+
 function App() {
   return (
     <div className='App'>
       <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/home" element={<Home />}/>
+          <Route path="/login" element={<Login/>}/>
           <Route index element={<Home />} />
           <Route path="/sellers" element={<Sellersmanagement />}/>
           <Route path="/sellers/registerseller" element={<Registerseller />}/>
@@ -22,8 +24,7 @@ function App() {
           <Route path="/sellers/updateseller" element={<Updateseller />}/>
           <Route path="/inventory" element={<Inventory />}/>
           <Route path="/sales" element={<Sales />}/>
-          <Route path="/*" element={<NotFound />} /> {/* Ruta 404 */}
-      
+          <Route path="/*" element={<NotFound />} /> 
       </Routes>
     </div>
   );
