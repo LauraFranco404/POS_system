@@ -5,9 +5,13 @@ from django.http import JsonResponse
 from django.shortcuts import render
 import json
 import pymongo  # 👈 Importación necesaria
+from datetime import datetime  # 👈 Importación para la fecha y hora
 
 from pymongo import WriteConcern
 from pymongo.errors import PyMongoError
+
+from bson import ObjectId  # 👈 Importación necesaria para manejar ObjectId
+
 
 inventory = db["inventory"]
 sales = db["sales"]
@@ -27,8 +31,11 @@ def sellProducts(request):
                 return JsonResponse({"error": "No products provided"}, status=400)
 
             # Validar si el vendedor existe
-            if not sellerid or not sellers.find_one({"documentid": sellerid}):
+            if not sellerid or not sellers.find_one({"sellerid": sellerid}):
                 return JsonResponse({"error": "Seller not found"}, status=404)
+
+            # Agregar fecha y hora de la venta
+            data["sale_datetime"] = datetime.now().isoformat()  # 👈 Fecha y hora en formato ISO 8601
 
             # Iniciar una sesión para la transacción
             with db.client.start_session() as session:
@@ -89,3 +96,104 @@ def sellProducts(request):
             return JsonResponse({"error": str(e)}, status=500)
 
     return JsonResponse({"error": "Method not allowed"}, status=405)
+
+# Obtener todas las ventas
+def getAllSales(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "Method not allowed"}, status=405)
+    try:
+        all_sales = list(sales.find({}))
+        # Convertir _id a string
+        for sale in all_sales:
+            sale["_id"] = str(sale["_id"])
+        return JsonResponse(all_sales, safe=False, status=200)
+    except Exception as e:
+        print(e)
+        return JsonResponse({"error": str(e)}, status=500)
+
+
+# Obtener ventas de hoy
+def getSalesToday(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "Method not allowed"}, status=405)
+    try:
+        today = datetime.now().date()
+        start = datetime.combine(today, datetime.min.time())
+        end = datetime.combine(today, datetime.max.time())
+
+        sales_today = list(sales.find({"sale_datetime": {"$gte": start.isoformat(), "$lt": end.isoformat()}}))
+        # Convertir _id a string
+        for sale in sales_today:
+            sale["_id"] = str(sale["_id"])
+        return JsonResponse(sales_today, safe=False, status=200)
+    except Exception as e:
+        print(e)
+        return JsonResponse({"error": str(e)}, status=500)
+
+
+# Obtener ventas de esta semana
+def getSalesThisWeek(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "Method not allowed"}, status=405)
+    try:
+        today = datetime.now().date()
+        start_of_week = today - timedelta(days=today.weekday())
+        start = datetime.combine(start_of_week, datetime.min.time())
+        end = datetime.combine(today, datetime.max.time())
+
+        sales_this_week = list(sales.find({"sale_datetime": {"$gte": start.isoformat(), "$lt": end.isoformat()}}))
+        # Convertir _id a string
+        for sale in sales_this_week:
+            sale["_id"] = str(sale["_id"])
+        return JsonResponse(sales_this_week, safe=False, status=200)
+    except Exception as e:
+        print(e)
+        return JsonResponse({"error": str(e)}, status=500)
+
+# Obtener ventas de este mes
+def getSalesThisMonth(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "Method not allowed"}, status=405)
+    try:
+        today = datetime.now()
+        start_of_month = today.replace(day=1)
+        start = datetime.combine(start_of_month, datetime.min.time())
+        end = datetime.combine(today, datetime.max.time())
+
+        sales_this_month = list(sales.find({"sale_datetime": {"$gte": start.isoformat(), "$lt": end.isoformat()}}))
+        # Convertir _id a string
+        for sale in sales_this_month:
+            sale["_id"] = str(sale["_id"])
+        return JsonResponse(sales_this_month, safe=False, status=200)
+    except Exception as e:
+        print(e)
+        return JsonResponse({"error": str(e)}, status=500)
+# Eliminar una venta obteniendo el ID desde el cuerpo de la petición (JSON)
+@csrf_exempt
+def deleteSale(request):
+    if request.method != "DELETE":
+        return JsonResponse({"error": "Method not allowed"}, status=405)
+    try:
+        # Obtener el cuerpo de la petición y cargarlo como JSON
+        data = json.loads(request.body)
+        sale_id = data.get("_id")
+
+        # Verificar si el ID fue proporcionado
+        if not sale_id:
+            return JsonResponse({"error": "Sale ID is required"}, status=400)  # 400 - Bad Request
+
+        # Verificar si el ID es válido
+        if not ObjectId.is_valid(sale_id):
+            return JsonResponse({"error": "Invalid sale ID format"}, status=400)  # 400 - Bad Request
+
+        # Buscar y eliminar la venta
+        result = sales.delete_one({"_id": ObjectId(sale_id)})
+        if result.deleted_count == 0:
+            return JsonResponse({"error": "Sale not found"}, status=404)  # 404 - Not Found
+        return JsonResponse({"message": "Sale deleted successfully"}, status=200)  # 200 - OK
+
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON format"}, status=400)  # 400 - Bad Request
+    except Exception as e:
+        print(e)
+        return JsonResponse({"error": str(e)}, status=500)  # 500 - Server Error
