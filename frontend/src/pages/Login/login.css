@@ -1,4 +1,91 @@
 .login-container{
+    width: 100%;
+    height: 100vh;
+    
+}
+
+.iconStyle {
+    pointer-events: none;
+    user-select: none;
+    padding: 20px 15px 15px 15px;
+    color: var(--primary-color-3);
+    width: 35px;
+    height: 35px;
+}
+.separator-line{
+    width: 100%;
+    background-color: var(--gray-1);
+    height: 1px;
+    margin: 20px 0 20px 0;
+}
+
+
+.form-title{
+    font-size: 40pt;
+    font-weight: 400;
+}
+
+.form-subtitle{
+    font-size: 20pt;
+}
+
+.login-form
+{
+    width: 500px;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: var(--background-color-1);
+    border-right: 2px var(--primary-color-1) solid;
     display: flex;
     flex-direction: column;
 }
+
+.panel-elements{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.panel-elements li{
+    border: 1px var(--gray-1) solid;
+    border-radius: 15px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-container input{
+    padding: 10px;
+    border-radius: 2px;
+    border-style: none;
+    background-color: var(--background-color-3);
+}
+
+.form-container input:focus{
+    outline: 1px var(--primary-color-3) solid;
+}
+
+.form-container button{
+    padding: 10px;
+    border-radius: 2px;
+    border-style: none;
+    background-color: var(--primary-color-1);
+}
+
+.form-container button:hover{
+    background-color: var(--primary-color-2);
+}
+
