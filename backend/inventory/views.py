@@ -8,7 +8,7 @@ import json
 
 inventory = db["inventory"]
 
-# product data structure {"productid": 1, "name": "p1", "amount": 0}
+# product data structure {"productid": 1, "name": "p1", "amount": 0, "unitprice": 0}
 
 @csrf_exempt
 def createProduct(request):
