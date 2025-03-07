@@ -12,6 +12,7 @@ export default function Navbar({ page, getData }) {
     const location = useLocation();
     const [selectedLink, setSelectedLink] = useState(page); // Initialize with current page
     const sellersActive = location.pathname.startsWith("/sellers");
+    const salesActive = location.pathname.startsWith("/sales");
 
     useEffect(() => {
         setSelectedLink(location.pathname);
@@ -19,7 +20,7 @@ export default function Navbar({ page, getData }) {
 
     return (
         // nav
-        
+
         <div>
             <div className={styles.pageStyle}>
                 <div className={styles.navbarContainer}>
@@ -40,7 +41,7 @@ export default function Navbar({ page, getData }) {
                             Inventory
                         </Link>
                     }
-                    <Link to={"/sales"} className={`${styles.navItem} ${selectedLink === "/sales" ? styles.selectedItem : ""}`}>
+                    <Link to={"/sales"} className={`${styles.navItem} ${salesActive ? styles.selectedItem : ""}`}>
                         Sales
                     </Link>
                     <Link to={"/login"} className={`${styles.loginButton}`}>

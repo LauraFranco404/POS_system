@@ -31,7 +31,8 @@ def sellProducts(request):
                 return JsonResponse({"error": "No products provided"}, status=400)
 
             # Validar si el vendedor existe
-            if not sellerid or not sellers.find_one({"sellerid": sellerid}):
+            if not sellerid or not sellers.find_one({"documentid": sellerid}):
+                print("vendedor no existe")
                 return JsonResponse({"error": "Seller not found"}, status=404)
 
             # Agregar fecha y hora de la venta

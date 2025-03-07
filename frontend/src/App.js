@@ -9,6 +9,8 @@ import Sellersmanagement from './pages/Sellers/sellers_management';
 import Sales from './pages/Sales/sales';
 import NotFound from './pages/NotFound/not_found';
 import Login from './pages/Login/login';
+import CreateSales from './pages/Sales/create_sales';
+import SearchSales from './pages/Sales/search_sales';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/sellers/updateseller" element={<Updateseller />}/>
           <Route path="/inventory" element={<Inventory />}/>
           <Route path="/sales" element={<Sales />}/>
+          <Route path="/sales/createsales" element={<CreateSales />}/>
+          <Route path="/sales/searchsales" element={<SearchSales />}/>
           <Route path="/*" element={<NotFound />} /> 
       </Routes>
     </div>

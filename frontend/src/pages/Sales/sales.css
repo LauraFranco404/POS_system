@@ -1,0 +1,53 @@
+
+.sales-container{
+    display: flex;
+    flex-direction: row;
+    top: 0;
+    position: absolute;
+    z-index: -1;
+    height: 100vh;
+    width: 100%;
+}
+
+.fitright{
+    width: 100%;
+}
+.sales-content{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bar-skip{
+    padding-top: 60px;
+}
+
+.sales-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sales-filter-dropdown {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sales-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.sales-content {
+    padding: 20px;
+}
+
+.sales-container {
+    display: flex;
+}
+
+

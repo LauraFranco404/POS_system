@@ -1,0 +1,20 @@
+.sales-sidebar{
+    z-index: -1;
+    background-color: var(--background-color-1);
+    border-right: 1px var(--gray-1) solid;
+    display: flex;
+    flex-direction: column;
+    width: 350px;   
+    height: 100%;
+}
+
+.tab{
+    text-decoration: none;
+    color: var(--text-color-1);
+    padding: 15px;
+}
+
+.selected-tab{
+    background-color: var(--background-color-2);
+    border-right: 3px var(--primary-color-1) solid;
+}
