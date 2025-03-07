@@ -19,6 +19,7 @@ export default function Navbar({ page, getData }) {
 
     return (
         // nav
+        
         <div>
             <div className={styles.pageStyle}>
                 <div className={styles.navbarContainer}>
