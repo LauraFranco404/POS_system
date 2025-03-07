@@ -1,27 +1,12 @@
+from django_backend.mongo_connection import db
+
 from django.views.decorators.csrf import csrf_exempt
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
 from django.http import JsonResponse
 from django.shortcuts import render
-from dotenv import load_dotenv
 import bcrypt
 import json
-import os
 
-load_dotenv()
-uri = os.getenv("DATABASE_URL") #full url is in .env file, it is not uploaded to the repository.
-# Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
-db = client["Test-stuff"]
 sellers = db["sellers"]
-
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
-
 #json sellers structure: {"documentid": 1234567891, "name": "n1", "lastname": "n2", "datebirth": "10/10/2010", "password":1234}
 
 @csrf_exempt
