@@ -19,6 +19,10 @@
     font-weight: 400;
 }
 
+.sale-info td{
+    text-align: center;
+}
+
 .sale-info tr:first-child th{
     padding: 0 20px 0 20px;
     font-weight: 900;

@@ -14,6 +14,7 @@ export default function SearchSales(){
         <Navbar/>
         <div className="sales-container">
             <SalesSideBar className = "bar-skip"></SalesSideBar>
+            {/*
             <div className="bar-skip fitright">
                 <div  className="sales-content">
                 {
@@ -23,6 +24,7 @@ export default function SearchSales(){
                 }
                 </div>
             </div>
+            */}
         </div>
     </div>
     )

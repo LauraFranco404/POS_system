@@ -8,7 +8,7 @@ import { useState } from "react";
 export default function CreateSales() {
     // Estado para manejar los productos de la venta
     const [sale, setSale] = useState({
-        sellerid: 1,
+        sellerid: 1004,
         clientid: 1,
         products: [],
     });
