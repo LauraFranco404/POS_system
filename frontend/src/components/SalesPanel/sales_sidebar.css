@@ -8,6 +8,10 @@
     height: 100%;
 }
 
+.sales-sidebar h2{
+    padding: 10px;
+}
+
 .tab{
     text-decoration: none;
     color: var(--text-color-1);

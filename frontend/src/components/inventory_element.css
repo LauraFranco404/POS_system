@@ -22,7 +22,7 @@
 }
 
 .remove-button:hover{
-    color: var(--gray-2);
+    color: var(--primary-color-3);
 }
 
 .increase-decrease-buttons{
@@ -42,6 +42,11 @@
     background-color: var(--background-color-1);
     border: 1px var(--gray-1) solid;
 
+}
+
+.increase-decrease-buttons button:hover
+{
+    border: 3px var(--primary-color-3) solid;
 }
 
 .element-container span:first-child{

@@ -111,7 +111,7 @@ export default function Storeinventory() {
                     </button>
                 </div>
             </div>
-            <div className="container">
+            <div className="inventory-container">
                 <div className="elements-container">
                     {elements.length > 0 ? (
                         elements.map((product) => (

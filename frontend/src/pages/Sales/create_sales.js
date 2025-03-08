@@ -8,7 +8,7 @@ import { useState } from "react";
 export default function CreateSales() {
     // Estado para manejar los productos de la venta
     const [sale, setSale] = useState({
-        sellerid: 1004,
+        sellerid: 1005,
         clientid: 1,
         products: [],
     });
@@ -133,7 +133,7 @@ export default function CreateSales() {
                             <button type="submit">Add Product</button>
                         </form>
                         <Saleelement editable={true} sale={sale} onRemoveProduct={handleRemoveProduct} />
-                        <button onClick={handleFinishSale}>Finish sale</button>
+                        <button className="create-sale-button" onClick={handleFinishSale}>Finish sale</button>
                     </div>
                 </div>
             </div>

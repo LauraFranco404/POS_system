@@ -12,7 +12,73 @@ inventory = db["inventory"]
 sales = db["sales"]
 sellers = db["sellers"]
 
-# 🟢 Registrar venta de productos
+from django_backend.mongo_connection import db
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import json
+import pymongo
+from datetime import datetime, timedelta
+from pymongo import WriteConcern
+from pymongo.errors import PyMongoError
+from bson import ObjectId
+
+inventory = db["inventory"]
+sales = db["sales"]
+sellers = db["sellers"]
+
+from django_backend.mongo_connection import db
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import pymongo
+from pymongo.errors import PyMongoError
+from bson import ObjectId
+
+inventory = db["inventory"]
+sales = db["sales"]
+sellers = db["sellers"]
+
+@csrf_exempt
+def getSalesBySellerID(request):
+    # Check if the request method is GET
+    if request.method != 'GET':
+        return JsonResponse({"error": "Invalid request method. Only GET is allowed."}, status=405)
+
+    try:
+        # Get sellerid from query parameters
+        seller_id = int(request.GET.get("sellerid"))
+
+        # Check if seller_id is provided
+        if not seller_id:
+            return JsonResponse({"error": "Missing 'sellerid' parameter in the URL."}, status=400)
+
+        print(seller_id)
+        # Validate if seller exists
+        if not sellers.find_one({"documentid": seller_id}):
+            print("not found: ",seller_id)
+            return JsonResponse({"error": "Seller not found."}, status=404)
+
+        # Fetch sales for the given seller ID
+        sales_data = list(sales.find({"sellerid": seller_id}))
+
+        # If no sales found
+        if not sales_data:
+            return JsonResponse({"message": "No sales found for this seller.", "sales": []}, status=200)
+
+        # Prepare the response
+        response = []
+        for sale in sales_data:
+            sale["_id"] = str(sale["_id"])  # Convert ObjectId to string
+            response.append(sale)
+
+        return JsonResponse({"message": "Sales retrieved successfully.", "sales": response}, status=200)
+
+    except PyMongoError as e:
+        return JsonResponse({"error": "Database error: " + str(e)}, status=500)
+
+    except Exception as e:
+        return JsonResponse({"error": "An unexpected error occurred: " + str(e)}, status=500)
+
+    
 @csrf_exempt
 def sellProducts(request):
     if request.method == "POST":
@@ -142,3 +208,5 @@ def deleteSale(request):
         return JsonResponse({"error": "Invalid JSON format"}, status=400)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
+
+

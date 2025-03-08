@@ -8,4 +8,5 @@ urlpatterns = [
     path('getsalesthisweek/', views.getSalesThisWeek, name='getsalesthisweek'),
     path('getsalesthismonth/', views.getSalesThisMonth, name='getsalesthismonth'),
     path('deletesale/', views.deleteSale, name='deletesale'),
+    path('getsalesbysellerid/', views.getSalesBySellerID, name='getsalesbysellerid')
 ]

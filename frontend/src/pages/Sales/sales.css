@@ -5,7 +5,7 @@
     top: 0;
     position: absolute;
     z-index: -1;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
 }
 
@@ -37,6 +37,14 @@
     cursor: pointer;
 }
 
+.sales-filter-dropdown:focus{
+    outline: 1px solid var(--primary-color-2);
+}
+
+.sellers-panel{
+    padding: 200px 20px 0 0;
+}
+
 .sales-title {
     font-size: 24px;
     font-weight: bold;
@@ -48,6 +56,46 @@
 
 .sales-container {
     display: flex;
+}
+
+
+.create-sale-button{
+    border-style: none;
+    background-color: var(--primary-color-3);
+    color: var(--background-color-1);
+    padding: 10px 15px 10px 15px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.create-sale-button:hover{
+    background-color: var(--primary-color-4);
+}
+
+.product-form input, .seller-form input{
+    padding: 10px;
+    border-radius: 10px 0 0 10px;
+    border-style: none;
+    background-color: var(--background-color-1);
+    outline: 1px var(--gray-2) solid;
+}
+
+.product-form input:focus, .seller-form input:focus{
+    outline: 1px var(--primary-color-3) solid;
+}
+
+
+.product-form button, .seller-form button{
+    padding: 10px;
+    border-radius: 0 10px 10px 0;
+    border-style: none;
+    background-color: var(--primary-color-2);
+    color: var(--background-color-1);
+    font-weight: 700;
+    outline: 1px var(--primary-color-3) solid;
+}
+.product-form button:hover, .seller-form button:hover{
+    background-color: var(--primary-color-3);
 }
 
 
