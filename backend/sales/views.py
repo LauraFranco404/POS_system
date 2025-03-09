@@ -10,32 +10,7 @@ from bson import ObjectId
 
 inventory = db["inventory"]
 sales = db["sales"]
-sellers = db["sellers"]
-
-from django_backend.mongo_connection import db
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-import json
-import pymongo
-from datetime import datetime, timedelta
-from pymongo import WriteConcern
-from pymongo.errors import PyMongoError
-from bson import ObjectId
-
-inventory = db["inventory"]
-sales = db["sales"]
-sellers = db["sellers"]
-
-from django_backend.mongo_connection import db
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-import pymongo
-from pymongo.errors import PyMongoError
-from bson import ObjectId
-
-inventory = db["inventory"]
-sales = db["sales"]
-sellers = db["sellers"]
+users = db["users"]
 
 @csrf_exempt
 def getSalesBySellerID(request):
@@ -53,7 +28,7 @@ def getSalesBySellerID(request):
 
         print(seller_id)
         # Validate if seller exists
-        if not sellers.find_one({"documentid": seller_id}):
+        if not users.find_one({"documentid": seller_id}):
             print("not found: ",seller_id)
             return JsonResponse({"error": "Seller not found."}, status=404)
 
@@ -90,7 +65,7 @@ def sellProducts(request):
             if not products:
                 return JsonResponse({"error": "No products provided"}, status=400)
 
-            if not sellerid or not sellers.find_one({"documentid": sellerid}):
+            if not sellerid or not users.find_one({"documentid": sellerid}):
                 return JsonResponse({"error": "Seller not found"}, status=404)
 
             # Guardar la fecha y hora en formato ISO 8601

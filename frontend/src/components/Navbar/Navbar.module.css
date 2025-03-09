@@ -63,3 +63,38 @@
     margin-left: auto;
     display: flex;
 }
+
+.userMenu {
+    position: relative;
+}
+
+.userButton {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    padding: 10px;
+}
+
+.logoutButton {
+    margin-top: 10px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.logoutButton:hover {
+    background-color: #d32f2f;
+}

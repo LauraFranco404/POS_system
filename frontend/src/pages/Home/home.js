@@ -4,7 +4,6 @@ import {Link, useLocation} from "react-router-dom";
 
   function Home() {
     var isLoggedIn = false;
-    var isAdmin = true; //add login as admin or as seller
     return (
       <div>
         <Navbar/>

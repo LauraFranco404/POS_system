@@ -58,6 +58,7 @@ export default function Registerseller() {
             name: formData.name,
             lastname: formData.lastname,
             datebirth: formData.datebirth,
+            type: "seller",
             password: formData.password
         };
 
