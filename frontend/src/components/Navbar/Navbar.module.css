@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     border-bottom: 1px var(--gray-1) solid; /* Colores constantes definidos en index.css */
-    padding: 0px 15px 0 0px;
+    padding: 0px 0px 0 0px;
     margin: 0px;
     text-align: center;
     justify-content: left;
@@ -66,13 +66,23 @@
 
 .userMenu {
     position: relative;
+    height: 100%;
+    margin-left: auto;
+    /*margin-right: 10px;
+*/
 }
 
 .userButton {
-    background-color: #fff;
+    background-color: var(--background-color-1);
     border: 1px solid #ccc;
-    padding: 5px 10px;
     cursor: pointer;
+    height: 60px;
+    font-weight: 100;
+    font-size: 15pt;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-bottom: 1px var(--gray-1) solid; /* Colores constantes definidos en index.css */
+    padding: 0px 15px 0 15px;
+
 }
 
 .dropdownMenu {
@@ -83,18 +93,25 @@
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 100;
-    padding: 10px;
+    padding: 15px;
+    width:250px;
+    min-height:200px;
+    border-radius: 8px;
+    text-align: left;
 }
 
 .logoutButton {
     margin-top: 10px;
-    background-color: #f44336;
+    background-color: var(--gray-1);
     color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    width: 100%;
+    border-radius: 16px;
+    height:30px;
 }
 
 .logoutButton:hover {
-    background-color: #d32f2f;
+    background-color: var(--primary-color-4);
 }

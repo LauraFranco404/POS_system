@@ -7,7 +7,7 @@
 }
 
 .text-container{
-    padding: 15rem;
+    padding: 20vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,12 +19,12 @@
     margin: 0 0 3rem 0;
     font-weight: 900;
     font-size: 45pt;
+    justify-content: center;
 }
 
 .text-container span{
     margin: 0 0 1rem 0;
-    display: flex;
-    justify-content: center;
+    text-align: center;
 }
 
 .login-link{

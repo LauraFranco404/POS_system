@@ -22,6 +22,8 @@ export default function Login() {
             if (response.ok && data.success) {
                 sessionStorage.setItem("user", JSON.stringify(data.user));
                 navigate("/");
+                window.location.reload(); // Forzar recarga
+
             } else {
                 setError(data.message || "Invalid credentials");
             }
@@ -36,8 +38,7 @@ export default function Login() {
                 <Link to="/">
                     <img src="/POS_icon.png" alt="POS Logo" className="iconStyle" />
                 </Link>
-                <span className='form-title'>Point Of Sale System</span>
-                <span className='form-subtitle'>Login</span>
+                <span className='form-title'>Login to Your Account</span>
                 <div className="separator-line"></div>
                 <form className="form-container" onSubmit={handleSubmit}>
                     <input placeholder="Document ID" value={documentid} onChange={(e) => setDocumentID(e.target.value)} required />

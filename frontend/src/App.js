@@ -17,7 +17,9 @@ import { useState, useEffect } from 'react';
 function App() {
   // Estado para manejar los datos del usuario
   const [userData, setUserData] = useState(JSON.parse(sessionStorage.getItem("user")));
-
+  let isAdmin = userData?.type === "admin";
+  let isLoggedIn = !!userData;
+  //const isLoggedIn = true;
   // Actualizar userData cuando cambia sessionStorage
   useEffect(() => {
     const handleStorageChange = () => {
@@ -27,12 +29,17 @@ function App() {
     // Detectar cambios en sessionStorage
     window.addEventListener("storage", handleStorageChange);
 
+    // También actualizar cuando el componente se renderiza
+    setUserData(JSON.parse(sessionStorage.getItem("user")))
     // Cleanup del event listener
+    isAdmin = userData?.type === "admin";
+    //const isAdmin = true;
+    isLoggedIn = !!userData;
+    //const isLoggedIn = true;
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
-  const isAdmin = userData?.type === "admin";
-  const isLoggedIn = !!userData;
+ 
 
   console.log(userData);
 

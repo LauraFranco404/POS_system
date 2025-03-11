@@ -16,6 +16,7 @@ export default function Navbar() {
     const handleLogout = () => {
         sessionStorage.removeItem("user");
         navigate("/");
+        window.location.reload(); // Forzar recarga
     };
 
     useEffect(() => {
@@ -49,21 +50,15 @@ export default function Navbar() {
                         </Link>
                     }
                     {userData ? (
-                        <div 
-                        className={styles.userMenu} 
-                        onMouseLeave={() => setMenuOpen(false)}
-                    >
-                        <button 
-                            onClick={() => setMenuOpen(!menuOpen)} 
-                            className={styles.userButton}
-                        >
+                        <div className={styles.userMenu} onMouseLeave={() => setMenuOpen(false)}>
+                        <button onClick={() => setMenuOpen(!menuOpen)} className={styles.userButton}>
                             {userData.name}
                         </button>
                         {menuOpen && (
                             <div className={styles.dropdownMenu}>
                                 <p><strong>Name:</strong> {userData.name}</p>
                                 <p><strong>Lastname:</strong> {userData.lastname}</p>
-                                <p><strong>Document ID:</strong> {userData.documentID}</p>
+                                <p><strong>Document ID:</strong> {userData.documentid}</p>
                                 <p><strong>Type:</strong> {userData.type}</p>
                                 <button 
                                     onClick={handleLogout} 
