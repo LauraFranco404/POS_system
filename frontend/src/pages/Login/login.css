@@ -29,8 +29,7 @@
     font-size: 20pt;
 }
 
-.login-form
-{
+.login-form{
     width: 500px;
     height: 100%;
     padding: 40px;
@@ -62,16 +61,21 @@
 }
 
 .form-container{
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
 .form-container input{
-    padding: 10px;
-    border-radius: 2px;
-    border-style: none;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     background-color: var(--background-color-3);
+    font-size: 14px;
+    box-sizing: border-box;
+
 }
 
 .form-container input:focus{
@@ -79,9 +83,11 @@
 }
 
 .form-container button{
-    padding: 10px;
-    border-radius: 2px;
-    border-style: none;
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid var(--primary-color-1);
     background-color: var(--primary-color-1);
 }
 
@@ -89,3 +95,89 @@
     background-color: var(--primary-color-2);
 }
 
+/*
+Algunos estilos nuevos
+*/
+.input-container {
+    display:flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.input-container input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+
+}
+.login-box{
+    display: flex;
+    max-height: 600px; /* Máximo alto */
+    background-color: aliceblue;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.left-section{
+    background-color: var(--background-color-1);
+    border-right: 2px var(--primary-color-1) solid;
+    width: 40%;
+    height: 100vh;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: var(--background-color-1);
+    border-right: 2px var(--primary-color-1) solid;
+    display: flex;
+    flex-direction: column;
+}
+.password-container{
+    position: relative;
+}
+.login-button{
+    width: 100%;
+    background-color: #009688;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s ease-in-out;
+}
+.login-button:hover{
+    background: #00796b;
+}
+
+
+/*Sección derecha*/
+
+.right-section{
+    width: 60%;
+    background: linear-gradient(135deg, #009688, #26a69a);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+}
+.right-section h2{
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+.right-section p{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
