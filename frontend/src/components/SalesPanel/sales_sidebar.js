@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 export default function SalesSideBar(props){
     const location = useLocation().pathname;
+
     return (
         <div className={props.className}>
             <div className="sales-sidebar ">

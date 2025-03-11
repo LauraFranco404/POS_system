@@ -53,7 +53,7 @@ export default function Login() {
     );*/
     return(
         <div className="login-container">
-            <div className="login-box">
+
                 {/*Sección izquierda*/}
                 <div className="left-section">
                     <Link to="/">
@@ -83,7 +83,6 @@ export default function Login() {
                     <h2>New Here?</h2>
                     <p>Ask the administrator for your credentials!</p>
                 </div>
-            </div>
         </div>
 
 

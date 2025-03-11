@@ -29,7 +29,7 @@
 }
 
 .remove-product-button {
-    background-color: #e74c3c;
+    background-color: var(--primary-color-2);
     color: white;
     border: none;
     border-radius: 5px;
@@ -39,6 +39,6 @@
 }
 
 .remove-product-button:hover {
-    background-color: #c0392b;
+    background-color: var(--primary-color-1);
 }
 

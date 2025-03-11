@@ -7,8 +7,10 @@ import { useState } from "react";
 
 export default function CreateSales() {
     // Estado para manejar los productos de la venta
+    const userData = JSON.parse(sessionStorage.getItem("user"));
+
     const [sale, setSale] = useState({
-        sellerid: 1005,
+        sellerid: userData["documentid"],
         clientid: 1,
         products: [],
     });

@@ -4,7 +4,7 @@
     border-right: 1px var(--gray-1) solid;
     display: flex;
     flex-direction: column;
-    width: 350px;   
+    width: 250px;   
     height: 100%;
 }
 
