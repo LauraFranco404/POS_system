@@ -63,6 +63,11 @@ def updateSeller(request):
 
             # Comprobar si el usuario es un vendedor
             if seller and seller.get("type") == "seller":
+                # Encrypt password
+                password = str(data.get("password")).encode("utf-8")
+                hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
+                data["password"] = hashed_password.decode("utf-8")
+                
                 users.update_one({"documentid": data.get("documentid")}, {"$set": data})
                 return JsonResponse({"message": "Seller updated"}, status=200)
             elif seller:
